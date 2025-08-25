@@ -1,135 +1,307 @@
-# Turborepo starter
+# CompanyFinder - MERN Stack Application
 
-This Turborepo starter is maintained by the Turborepo core team.
+A full-stack web application for managing and searching company data, built with the MERN (MongoDB, Express.js, React.js, Node.js) stack. This project was developed as a technical assessment for Frontlines Media.
 
-## Using this example
+## 🚀 Features
 
-Run the following command:
+### Backend (Node.js + Express + MongoDB)
+- **RESTful API** for complete CRUD operations on company data
+- **Advanced Filtering** with multiple search criteria
+- **MongoDB Integration** with Mongoose ODM
+- **CORS Enabled** for cross-origin requests
+- **Environment Configuration** with dotenv
 
-```sh
-npx create-turbo@latest
+### Frontend (Next.js + React + TypeScript)
+- **Modern UI** with Tailwind CSS and Radix UI components
+- **Responsive Design** that works on all devices
+- **Real-time Filtering** with searchable dropdowns
+- **Company Cards** displaying comprehensive information
+- **Add Company Form** with validation
+- **TypeScript** for type safety
+
+### Company Data Model
+- **Name** (required)
+- **Industry** (required)
+- **Location** (required)
+- **Size** (number of employees)
+- **Founded Year**
+- **Domain/Website**
+- **Rating** (0-5 scale)
+- **Hiring Status** (boolean)
+- **Timestamps** (created/updated)
+
+## 🛠️ Tech Stack
+
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - Object Data Modeling
+- **CORS** - Cross-origin resource sharing
+- **dotenv** - Environment variables
+
+### Frontend
+- **Next.js 15** - React framework
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Accessible UI components
+- **Lucide React** - Icon library
+- **Axios** - HTTP client
+
+## 📦 Installation & Setup
+
+### Prerequisites
+- Node.js (v18 or higher)
+- MongoDB (local or Atlas)
+- npm or yarn
+
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd CompanyFinder
 ```
 
-## What's inside?
+### 2. Install Dependencies
+```bash
+# Install root dependencies
+npm install
 
-This Turborepo includes the following packages/apps:
+# Install API dependencies
+cd apps/api
+npm install
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+# Install Web dependencies
+cd ../web
+npm install
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### 3. Environment Setup
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+#### Backend (.env file in apps/api/)
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/companyfinder
+# or for MongoDB Atlas:
+# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/companyfinder
 ```
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+#### Frontend (.env.local file in apps/web/)
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### 4. Start the Application
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+#### Development Mode
+```bash
+# Terminal 1 - Start Backend
+cd apps/api
+npm run dev
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+# Terminal 2 - Start Frontend
+cd apps/web
+npm run dev
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+#### Production Mode
+```bash
+# Build frontend
+cd apps/web
+npm run build
+npm start
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+# Start backend
+cd apps/api
+npm start
 ```
 
-## Useful Links
+## 🌐 API Documentation
 
-Learn more about the power of Turborepo:
+### Base URL
+```
+http://localhost:5000/api/companies
+```
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+### Endpoints
+
+#### 1. Get All Companies
+```http
+GET /api/companies
+```
+
+**Query Parameters (Filters):**
+- `industry` - Filter by industry
+- `location` - Filter by location
+- `size` - Filter by minimum company size
+- `domain` - Filter by domain
+- `isHiring` - Filter by hiring status (true/false)
+- `minRating` - Filter by minimum rating (0-5)
+
+**Example:**
+```http
+GET /api/companies?industry=Technology&location=San Francisco&minRating=4
+```
+
+#### 2. Get Company by ID
+```http
+GET /api/companies/:id
+```
+
+#### 3. Create New Company
+```http
+POST /api/companies/add
+Content-Type: application/json
+
+{
+  "name": "Tech Corp",
+  "industry": "Technology",
+  "location": "San Francisco",
+  "size": 500,
+  "foundedYear": 2020,
+  "domain": "techcorp.com",
+  "rating": 4.5,
+  "isHiring": true
+}
+```
+
+#### 4. Update Company
+```http
+PUT /api/companies/:id
+Content-Type: application/json
+
+{
+  "name": "Updated Tech Corp",
+  "rating": 4.8
+}
+```
+
+#### 5. Delete Company
+```http
+DELETE /api/companies/:id
+```
+
+## 🎨 Frontend Features
+
+### Main Dashboard (`/`)
+- **Company Cards** displaying all company information
+- **Advanced Filtering** with multiple criteria
+- **Searchable Dropdowns** for industry, location, and domain
+- **Real-time Search** by company name
+- **Responsive Grid Layout**
+
+### Add Company Page (`/addcompany`)
+- **Form Validation** for required fields
+- **Input Types** appropriate for each field
+- **Success/Error Messages**
+- **Auto-reset** after successful submission
+
+### Filter Options
+- **Company Name** - Text search
+- **Industry** - Dropdown with search
+- **Location** - Dropdown with search
+- **Company Size** - Minimum size filter
+- **Domain** - Dropdown with search
+- **Rating** - Minimum rating filter (0-5)
+- **Hiring Status** - Yes/No filter
+
+## 📁 Project Structure
+
+```
+CompanyFinder/
+├── apps/
+│   ├── api/                    # Backend API
+│   │   ├── src/
+│   │   │   ├── configs/        # Database configuration
+│   │   │   ├── controllers/    # Route controllers
+│   │   │   ├── models/         # Mongoose models
+│   │   │   ├── routes/         # Express routes
+│   │   │   └── index.js        # Server entry point
+│   │   └── package.json
+│   └── web/                    # Frontend Application
+│       ├── app/                # Next.js app directory
+│       │   ├── addcompany/     # Add company page
+│       │   └── page.tsx        # Main dashboard
+│       ├── components/         # Reusable components
+│       │   └── ui/            # UI components
+│       └── package.json
+├── package.json               # Root package.json
+└── README.md
+```
+
+## 🔧 Development
+
+### Adding New Features
+1. **Backend**: Add new routes in `apps/api/src/routes/`
+2. **Frontend**: Create new pages in `apps/web/app/`
+3. **Components**: Add reusable components in `apps/web/components/`
+
+### Database Schema
+The company schema includes:
+- Required fields: name, industry, location
+- Optional fields: size, foundedYear, domain, rating, isHiring
+- Automatic timestamps: createdAt, updatedAt
+
+### Styling
+- Uses Tailwind CSS for styling
+- Radix UI components for accessibility
+- Responsive design with mobile-first approach
+
+## 🚀 Deployment
+
+### Backend Deployment
+1. Set up MongoDB Atlas or local MongoDB
+2. Configure environment variables
+3. Deploy to platforms like Heroku, Railway, or Vercel
+
+### Frontend Deployment
+1. Build the application: `npm run build`
+2. Deploy to Vercel, Netlify, or similar platforms
+3. Update API URL in environment variables
+
+## 📝 Testing
+
+### API Testing
+Use tools like Postman or curl to test endpoints:
+
+```bash
+# Test getting all companies
+curl http://localhost:5000/api/companies
+
+# Test adding a company
+curl -X POST http://localhost:5000/api/companies/add \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test Corp","industry":"Technology","location":"Test City"}'
+```
+
+### Frontend Testing
+- Open browser developer tools
+- Test responsive design
+- Verify all filters work correctly
+- Test form validation
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is developed as a technical assessment for Frontlines Media.
+
+## 👨‍💻 Developer
+
+This project was developed as a technical assessment demonstrating MERN stack proficiency, including:
+- RESTful API development
+- Database design and management
+- Modern React/Next.js frontend
+- TypeScript implementation
+- Responsive UI/UX design
+- Clean code architecture
+
+---
+
+**Note**: This application is designed to be a complete, production-ready solution for managing company data with advanced filtering capabilities and a modern, responsive user interface.

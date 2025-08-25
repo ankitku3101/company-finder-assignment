@@ -30,7 +30,7 @@ export default function Page() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(""); // <-- Success message state
+  const [success, setSuccess] = useState("");
 
   const handleChange = (field: keyof CompanyForm, value: any) => {
     setForm({ ...form, [field]: value });
@@ -39,7 +39,7 @@ export default function Page() {
   const handleSubmit = async () => {
     setLoading(true);
     setError("");
-    setSuccess(""); // Reset success message
+    setSuccess("");
     try {
       const res = await fetch("http://localhost:5000/api/companies/add", {
         method: "POST",
@@ -52,7 +52,6 @@ export default function Page() {
         throw new Error(data.error || "Failed to add company");
       }
 
-      // Reset form after successful submission
       setForm({
         name: "",
         industry: "",
@@ -64,7 +63,7 @@ export default function Page() {
         rating: undefined,
       });
 
-      setSuccess("Company added successfully!"); // <-- Show success message
+      setSuccess("Company added successfully!");
     } catch (err: any) {
       setError(err.message);
     } finally {
